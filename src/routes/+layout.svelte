@@ -1,6 +1,6 @@
 <script>
   import ThemeProvider from "svelte-elegant/ThemeProvider";
-  import Header from "./Header.svelte";
+  import Header from "../components/Header.svelte";
 </script>
 
 <ThemeProvider>

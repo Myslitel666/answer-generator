@@ -1,7 +1,8 @@
 <script>
-  import { TextArea, TextField, Button } from "svelte-elegant";
+  import { TextArea, TextField, IconHover } from "svelte-elegant";
   import { themeStore } from "svelte-elegant/stores";
-  import Plus from "./Plus.svelte";
+  import Plus from "../components/Plus.svelte";
+  import Delete from "../components/Delete.svelte";
 
   let theme;
 
@@ -26,11 +27,14 @@
   function logInputs() {
     console.log("Current inputs:", inputs);
   }
+
+  function removeOption(id) {
+    inputs = inputs.filter((input) => input.id !== id);
+  }
 </script>
 
 <div style:height="37rem" style:display="flex" style:padding="4.35rem 0 0 1rem">
   <div
-    style:background-color="#f7f7f7"
     style:display="flex"
     style:flex-direction="column"
     style:height="100%"
@@ -43,15 +47,24 @@
     <TextArea width="100%" variant="Filled" height="6rem" label="Question" />
     <p style:font-size="1.28rem">Give me response options:</p>
     {#each inputs as input, index (input.id)}
-      <TextField
-        width="100%"
-        label="Answer {index + 1}"
-        bind:value={input.value}
-        oninput={logInputs}
-      />
+      <div style:display="flex" style:width="100%">
+        <TextField
+          width="100%"
+          label="Answer {index + 1}"
+          bind:value={input.value}
+          oninput={logInputs}
+        />
+        <button
+          onclick={() => removeOption(input.id)}
+          style:margin-left="0.33rem"
+          style:margin-right="0.33rem"
+        >
+          <Delete />
+        </button>
+      </div>
     {/each}
     <button
-      on:click={addNewOption}
+      onclick={addNewOption}
       style:align-self="flex-start"
       style:display="flex"
       style:align-items="center"
