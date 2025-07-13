@@ -140,7 +140,7 @@
     <div
       style:width="100%"
       style:box-sizing="border-box"
-      style:padding-bottom="0.5rem"
+      style:padding-bottom="8px"
     >
       <Button width="100%" onclick={generateAnswer}>Generate Answer</Button>
     </div>
@@ -177,6 +177,7 @@
     .right-half {
       width: 100%;
       padding-left: 0.5rem;
+      padding-right: 0.5rem;
     }
   }
 </style>
