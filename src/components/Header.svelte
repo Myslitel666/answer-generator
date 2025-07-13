@@ -22,7 +22,7 @@
 </script>
 
 <Header>
-  <button style:gap="0.5rem" onclick={() => goto("/about")}>
+  <button style:gap="0.5rem">
     <img src="/dice-2.png" height="45px" width="45px" alt="logo" />
     <p style:font-size="26px">
       <span
@@ -32,7 +32,7 @@
       >
         Answer
       </span>
-      <span style:color={elegantColor} style:transition="all 0.3s">
+      <span style:color={svelteColor} style:transition="all 0.3s">
         Generator
       </span>
     </p>

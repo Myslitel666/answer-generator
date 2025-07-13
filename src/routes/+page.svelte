@@ -1,12 +1,10 @@
 <script>
-  import { TextArea, TextField, IconHover } from "svelte-elegant";
+  import { TextArea, TextField, Button } from "svelte-elegant";
   import { themeStore } from "svelte-elegant/stores";
   import Plus from "../components/Plus.svelte";
   import Delete from "../components/Delete.svelte";
 
   let theme;
-
-  // Подписываемся на изменения темы
   themeStore.subscribe((value) => {
     theme = value;
   });
@@ -16,24 +14,47 @@
     { id: 2, value: "" },
   ];
 
-  function addNewOption() {
-    // Находим максимальный существующий ID
-    const maxId = Math.max(...inputs.map((input) => input.id));
-    // Добавляем новый элемент с ID на 1 больше максимального
-    inputs = [...inputs, { id: maxId + 1, value: "" }];
-  }
+  let question = "";
+  let questRendered = "";
+  let generatedAnswer = "";
 
-  // Функция для отладки - можно удалить в production
-  function logInputs() {
-    console.log("Current inputs:", inputs);
+  function addNewOption() {
+    const maxId = Math.max(...inputs.map((input) => input.id));
+    inputs = [...inputs, { id: maxId + 1, value: "" }];
   }
 
   function removeOption(id) {
     inputs = inputs.filter((input) => input.id !== id);
   }
+
+  function generateAnswer() {
+    questRendered = question;
+    inputs = inputs.filter((input) => input.value !== "");
+
+    // Проверяем, есть ли варианты ответов
+    if (inputs.length === 0) {
+      inputs = [
+        { id: 1, value: "" },
+        { id: 2, value: "" },
+      ];
+      generatedAnswer = "No answers available";
+      return;
+    }
+
+    // Проверяем, заполнены ли все варианты ответов
+    const emptyAnswers = inputs.filter((input) => input.value.trim() === "");
+    if (emptyAnswers.length > 0) {
+      generatedAnswer = "Please fill all answer options";
+      return;
+    }
+
+    // Выбираем случайный ответ
+    const randomIndex = Math.floor(Math.random() * inputs.length);
+    generatedAnswer = inputs[randomIndex].value;
+  }
 </script>
 
-<div style:height="37rem" style:display="flex" style:padding="4.35rem 0 0 1rem">
+<div style:display="flex" style:padding="4.35rem 0 0 1rem">
   <div
     style:display="flex"
     style:flex-direction="column"
@@ -44,7 +65,13 @@
     style:gap="0.5rem"
   >
     <p style:font-size="1.28rem">Ask your question:</p>
-    <TextArea width="100%" variant="Filled" height="6rem" label="Question" />
+    <TextArea
+      width="100%"
+      variant="Filled"
+      height="6rem"
+      label="Question"
+      bind:value={question}
+    />
     <p style:font-size="1.28rem">Give me response options:</p>
     {#each inputs as input, index (input.id)}
       <div style:display="flex" style:width="100%">
@@ -52,29 +79,34 @@
           width="100%"
           label="Answer {index + 1}"
           bind:value={input.value}
-          oninput={logInputs}
         />
         <button
-          onclick={() => removeOption(input.id)}
+          on:click={() => removeOption(input.id)}
           style:margin-left="0.33rem"
           style:margin-right="0.33rem"
+          style:background="none"
+          style:border="none"
+          style:padding="0"
+          style:cursor="pointer"
         >
           <Delete />
         </button>
       </div>
     {/each}
     <button
-      onclick={addNewOption}
+      on:click={addNewOption}
       style:align-self="flex-start"
       style:display="flex"
       style:align-items="center"
       style:cursor="pointer"
+      style:background="none"
+      style:border="none"
+      style:padding="0"
     >
       <Plus />
       <span
         style:margin-left="0.5rem"
         style:color={theme.palette.primary}
-        style:justify-content="center"
         style:font-size="0.94rem"
       >
         Add a new response option
@@ -83,7 +115,26 @@
   </div>
   <div
     style:width="32.5%"
-    style:height="37rem"
-    style:background-color="#e7e7e7"
-  ></div>
+    style:display="flex"
+    style:flex-direction="column"
+    style:align-items="center"
+    style:padding="1.45rem"
+  >
+    <img
+      src="/dice-2.png"
+      height="292px"
+      width="292px"
+      alt="logo"
+      style:margin-bottom="1.28rem"
+    />
+    {#if generatedAnswer}
+      <div style:margin-bottom="1rem" style:width="100%">
+        <p style:font-weight="bold">Question:</p>
+        <p style:margin-bottom="1rem">{questRendered || "No question asked"}</p>
+        <p style:font-weight="bold">Answer:</p>
+        <p>{generatedAnswer}</p>
+      </div>
+    {/if}
+    <Button width="100%" onclick={generateAnswer}>Generate Answer</Button>
+  </div>
 </div>
