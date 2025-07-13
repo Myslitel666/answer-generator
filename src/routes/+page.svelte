@@ -1,5 +1,5 @@
 <script>
-  import { TextArea, TextField } from "svelte-elegant";
+  import { TextArea, TextField, Button } from "svelte-elegant";
   import { themeStore } from "svelte-elegant/stores";
   import Plus from "./Plus.svelte";
 
@@ -14,6 +14,13 @@
     { id: 1, value: "" },
     { id: 2, value: "" },
   ];
+
+  function addNewOption() {
+    // Находим максимальный существующий ID
+    const maxId = Math.max(...inputs.map((input) => input.id));
+    // Добавляем новый элемент с ID на 1 больше максимального
+    inputs = [...inputs, { id: maxId + 1, value: "" }];
+  }
 
   // Функция для отладки - можно удалить в production
   function logInputs() {
@@ -32,9 +39,9 @@
     style:padding="1rem"
     style:gap="0.5rem"
   >
-    <p style:font-size="1.36rem">Ask your question:</p>
+    <p style:font-size="1.28rem">Ask your question:</p>
     <TextArea width="100%" variant="Filled" height="6rem" label="Question" />
-    <p style:font-size="1.36rem">Give me response options:</p>
+    <p style:font-size="1.28rem">Give me response options:</p>
     {#each inputs as input, index (input.id)}
       <TextField
         width="100%"
@@ -43,7 +50,8 @@
         oninput={logInputs}
       />
     {/each}
-    <div
+    <button
+      on:click={addNewOption}
       style:align-self="flex-start"
       style:display="flex"
       style:align-items="center"
@@ -54,10 +62,11 @@
         style:margin-left="0.5rem"
         style:color={theme.palette.primary}
         style:justify-content="center"
+        style:font-size="0.94rem"
       >
         Add a new response option
       </span>
-    </div>
+    </button>
   </div>
   <div
     style:width="32.5%"
