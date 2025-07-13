@@ -139,7 +139,7 @@
         <p>{generatedAnswer}</p>
       </div>
     {/if}
-    <div style:width="100%" style:padding-bottom="8px">
+    <div style:width="100%" style:padding-bottom="0.5rem">
       <Button width="100%" onclick={generateAnswer}>Generate Answer</Button>
     </div>
   </div>
@@ -162,7 +162,7 @@
   .left-half,
   .right-half {
     padding-left: 0.5rem;
-    padding-right: 0.75rem;
+    padding-right: 0.66rem;
   }
 
   @media (max-width: 768px) {
