@@ -1,5 +1,14 @@
 <script>
   import { TextArea, TextField } from "svelte-elegant";
+  import { themeStore } from "svelte-elegant/stores";
+  import Plus from "./Plus.svelte";
+
+  let theme;
+
+  // Подписываемся на изменения темы
+  themeStore.subscribe((value) => {
+    theme = value;
+  });
 
   let inputs = [
     { id: 1, value: "" },
@@ -34,10 +43,25 @@
         oninput={logInputs}
       />
     {/each}
+    <div
+      style:align-self="flex-start"
+      style:display="flex"
+      style:align-items="center"
+      style:cursor="pointer"
+    >
+      <Plus />
+      <span
+        style:margin-left="0.5rem"
+        style:color={theme.palette.primary}
+        style:justify-content="center"
+      >
+        Add a new response option
+      </span>
+    </div>
   </div>
   <div
     style:width="32.5%"
-    style:height="100%"
+    style:height="37rem"
     style:background-color="#e7e7e7"
   ></div>
 </div>
