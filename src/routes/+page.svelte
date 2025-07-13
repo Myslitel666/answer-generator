@@ -162,7 +162,7 @@
   .left-half,
   .right-half {
     padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding-right: 0.75rem;
   }
 
   @media (max-width: 768px) {
