@@ -161,6 +161,12 @@
     width: 32.5%;
   }
 
+  .left-half,
+  .right-half {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
   @media (max-width: 768px) {
     .app {
       flex-direction: column;
