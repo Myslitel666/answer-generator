@@ -58,12 +58,13 @@
 
 <div class="app">
   <div
+    class="left-half"
     style:display="flex"
     style:flex-direction="column"
     style:height="100%"
     style:align-items="center"
     style:gap="0.5rem"
-    class="left-half"
+    style:box-sizing="border-box"
   >
     <p style:font-size="1.28rem">Ask your question:</p>
     <TextArea
@@ -119,13 +120,14 @@
     style:flex-direction="column"
     style:align-items="center"
     class="right-half"
+    style:box-sizing="border-box"
   >
     <img
       src="/dice-2.png"
       height="292px"
       width="292px"
       alt="logo"
-      style:margin-bottom="0.88rem"
+      style:margin-bottom="0.8rem"
       style:transform="rotate({rotationDegrees}deg)"
       style:transition="transform 1s ease"
     />
@@ -137,12 +139,7 @@
         <p>{generatedAnswer}</p>
       </div>
     {/if}
-    <div
-      style:width="100%"
-      style:box-sizing="border-box"
-      style:padding-bottom="8px"
-      style:padding-right="0.1rem"
-    >
+    <div style:width="100%" style:padding-bottom="8px">
       <Button width="100%" onclick={generateAnswer}>Generate Answer</Button>
     </div>
   </div>
@@ -165,7 +162,6 @@
   .left-half,
   .right-half {
     padding-left: 0.5rem;
-    padding-right: 0.5rem;
   }
 
   @media (max-width: 768px) {
@@ -178,7 +174,6 @@
     .right-half {
       width: 100%;
       padding-left: 0.5rem;
-      padding-right: 0.5rem;
     }
   }
 </style>
