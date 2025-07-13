@@ -17,6 +17,7 @@
   let question = "";
   let questRendered = "";
   let generatedAnswer = "";
+  let rotationDegrees = 0;
 
   function addNewOption() {
     const maxId = Math.max(...inputs.map((input) => input.id));
@@ -30,6 +31,7 @@
   function generateAnswer() {
     questRendered = question;
     inputs = inputs.filter((input) => input.value !== "");
+    rotationDegrees += 360;
 
     // Проверяем, есть ли варианты ответов
     if (inputs.length === 0) {
@@ -126,6 +128,8 @@
       width="292px"
       alt="logo"
       style:margin-bottom="1.28rem"
+      style:transform="rotate({rotationDegrees}deg)"
+      style:transition="transform 1s ease"
     />
     {#if generatedAnswer}
       <div style:margin-bottom="1rem" style:width="100%">
