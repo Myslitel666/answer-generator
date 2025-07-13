@@ -1,5 +1,7 @@
 <script>
-  import { TextArea } from "svelte-elegant";
+  import { TextArea, TextField } from "svelte-elegant";
+
+  let inputs = ["", ""];
 </script>
 
 <div style:height="37rem" style:display="flex" style:padding="4.35rem 0 0 1rem">
@@ -14,8 +16,15 @@
     style:gap="0.5rem"
   >
     <p style:font-size="1.36rem">Ask your question:</p>
-    <TextArea width="100%" variant="Filled" height="6rem" label="Question"
-    ></TextArea>
+    <TextArea width="100%" variant="Filled" height="6rem" label="Question" />
+    <p style:font-size="1.36rem">Give me response options:</p>
+    {#each inputs as input, index}
+      <TextField
+        width="100%"
+        label="Answer {index + 1}"
+        bind:value={inputs[index]}
+      />
+    {/each}
   </div>
   <div
     style:width="32.5%"
