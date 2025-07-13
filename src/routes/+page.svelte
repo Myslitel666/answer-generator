@@ -139,8 +139,8 @@
     {/if}
     <div
       style:width="100%"
-      style:padding="0 0.5rem 0.5rem 0.5rem"
       style:box-sizing="border-box"
+      style:padding-bottom="0.5rem"
     >
       <Button width="100%" onclick={generateAnswer}>Generate Answer</Button>
     </div>
@@ -150,12 +150,11 @@
 <style>
   .app {
     display: flex;
-    padding: 4.35rem 1rem 0 0;
+    padding-top: 4.35rem;
   }
 
   .left-half {
     width: 67.5%;
-    padding-left: 1rem;
   }
 
   .right-half {
