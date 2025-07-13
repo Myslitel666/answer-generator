@@ -56,15 +56,14 @@
   }
 </script>
 
-<div style:display="flex" style:padding="4.35rem 0 0 1rem">
+<div class="app">
   <div
     style:display="flex"
     style:flex-direction="column"
     style:height="100%"
-    style:width="67.5%"
     style:align-items="center"
-    style:padding="1rem"
     style:gap="0.5rem"
+    class="left-half"
   >
     <p style:font-size="1.28rem">Ask your question:</p>
     <TextArea
@@ -83,7 +82,7 @@
           bind:value={input.value}
         />
         <button
-          on:click={() => removeOption(input.id)}
+          onclick={() => removeOption(input.id)}
           style:margin-left="0.33rem"
           style:margin-right="0.33rem"
           style:background="none"
@@ -96,7 +95,7 @@
       </div>
     {/each}
     <button
-      on:click={addNewOption}
+      onclick={addNewOption}
       style:align-self="flex-start"
       style:display="flex"
       style:align-items="center"
@@ -116,11 +115,10 @@
     </button>
   </div>
   <div
-    style:width="32.5%"
     style:display="flex"
     style:flex-direction="column"
     style:align-items="center"
-    style:padding="1.45rem"
+    class="right-half"
   >
     <img
       src="/dice-2.png"
@@ -139,6 +137,41 @@
         <p>{generatedAnswer}</p>
       </div>
     {/if}
-    <Button width="100%" onclick={generateAnswer}>Generate Answer</Button>
+    <div
+      style:width="100%"
+      style:padding="0 0.5rem 0.5rem 0.5rem"
+      style:box-sizing="border-box"
+    >
+      <Button width="100%" onclick={generateAnswer}>Generate Answer</Button>
+    </div>
   </div>
 </div>
+
+<style>
+  .app {
+    display: flex;
+    padding: 4.35rem 1rem 0 0;
+  }
+
+  .left-half {
+    width: 67.5%;
+    padding-left: 1rem;
+  }
+
+  .right-half {
+    width: 32.5%;
+  }
+
+  @media (max-width: 768px) {
+    .app {
+      flex-direction: column;
+      padding: 4.35rem 0.5rem 0 0rem;
+    }
+
+    .left-half,
+    .right-half {
+      width: 100%;
+      padding-left: 0.5rem;
+    }
+  }
+</style>
