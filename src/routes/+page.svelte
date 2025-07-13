@@ -125,7 +125,7 @@
       height="292px"
       width="292px"
       alt="logo"
-      style:margin-bottom="1.28rem"
+      style:margin-bottom="0.88rem"
       style:transform="rotate({rotationDegrees}deg)"
       style:transition="transform 1s ease"
     />
@@ -141,6 +141,7 @@
       style:width="100%"
       style:box-sizing="border-box"
       style:padding-bottom="8px"
+      style:padding-right="0.1rem"
     >
       <Button width="100%" onclick={generateAnswer}>Generate Answer</Button>
     </div>
