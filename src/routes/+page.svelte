@@ -139,7 +139,7 @@
         <p>{generatedAnswer}</p>
       </div>
     {/if}
-    <div style:width="100%" style:padding-bottom="0.5rem">
+    <div style:width="100%" style:padding-bottom="6px">
       <Button width="100%" onclick={generateAnswer}>Generate Answer</Button>
     </div>
   </div>
