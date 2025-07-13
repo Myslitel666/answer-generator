@@ -127,7 +127,7 @@
       height="292px"
       width="292px"
       alt="logo"
-      style:margin-bottom="0.8rem"
+      style:margin-bottom="0.7rem"
       style:transform="rotate({rotationDegrees}deg)"
       style:transition="transform 1s ease"
     />
