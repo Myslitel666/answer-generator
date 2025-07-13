@@ -116,10 +116,10 @@
     </button>
   </div>
   <div
+    class="right-half"
     style:display="flex"
     style:flex-direction="column"
     style:align-items="center"
-    class="right-half"
     style:box-sizing="border-box"
   >
     <img
@@ -157,18 +157,18 @@
 
   .right-half {
     width: 32.5%;
-    padding-right: 0.5rem;
   }
 
   .left-half,
   .right-half {
     padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 
   @media (max-width: 768px) {
     .app {
       flex-direction: column;
-      padding: 4.35rem 0rem 0rem 0rem;
+      padding-top: 4.35rem;
     }
 
     .left-half,
