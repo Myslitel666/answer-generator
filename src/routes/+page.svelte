@@ -164,7 +164,7 @@
   @media (max-width: 768px) {
     .app {
       flex-direction: column;
-      padding: 4.35rem 0.5rem 0 0rem;
+      padding: 4.35rem 1rem 0rem 0rem;
     }
 
     .left-half,
